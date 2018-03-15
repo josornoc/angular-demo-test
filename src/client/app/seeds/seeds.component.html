@@ -1,0 +1,124 @@
+<h2>Ventajas de estructura de seed elegida (Herramientas)</h2>
+<ul>
+  <li>Estructura básica funciona y escalable, además existen nuevos elementos que permitirán que nuestra arquitectura a nivel de front crezca técnicamente.</li>
+  <li><a href="https://github.com/mgechev/angular-seed" target="blank">Angular seed by mgechev</a></li>
+</ul>
+
+<h2>¿Por qué usar el siguiente angular-seed es el recomendado para empezar el proyecto?</h2>
+
+<h3>Documentación standalone de proyecto:</h3>
+<ul>
+  <li><a href="https://github.com/mgechev/angular-seed" target="blank">Github Readme (helper)</a></li>
+  <li><a href="https://mgechev.github.io/angular-seed/#tools-documentation" target="blank">Tools Doc</a></li>
+</ul>
+
+<h2>Definición de nuevos elementos de arquitectura / estructurales:</h2>
+
+<h3>Soporte para Yarn (Alternativa a NPM)</h3>
+<p>Yarn is an alternative package manager for NPM packages with a focus on reliability and speed. It has been released in October 2016 and already gained a lot of traction and enjoys great popularity in the JavaScript community.</p>
+<p>
+  <a href="https://blog.risingstack.com/yarn-vs-npm-node-js-package-managers/" target="blank">Link de ayuda</a>
+</p>
+<ul>
+  <li><strong>Offline Cache:</strong>Visto rápido no nos sirve porque no nos orientamos a este tipo de producto.  Este elemento no nos brinda nada imprescindible.  Irrelevante.</li>
+  <li><strong>Yarn.lock (Deterministic Installs):</strong>En una frase implementa un manejo de dependencias similar a Ruby (Gemfile.lock).  Así que sería decirle a Dios a los clásicos: “No me instala porque tengo una versión distinta” o el reconocido “En mi máquina si funciona la instalación del proyecto”.</li>
+  <li><strong>License checks (Una extensión de lo de arriba):</strong>Básicamente se chequea que todas las dependencias estén instaladas.</li>
+  <li><strong>Está en sus primeros días:</strong>Como todo nuevo proyecto está en una fase “inmadura” de desarrollo y existen problemas sin resolver. (Más de 1k issues levantados en github).</li>
+  <li><strong>Periodo de adaptación:</strong>Eliminar el “npm install” del léxico lleva su periodo de adaptación.  De cara a la migración creo que no es completamente relevante implementar una herramienta de este tipo ya que el npm nos sigue dando las mismas ventajas e inclusive mayor soporte en estas nuevas versiones de angular.</li>
+</ul>
+
+
+<h3>Cypress: Unit & Integration Tests</h3>
+<p>
+  <a href="https://medium.com/bratislava-angular/up-and-running-with-cypress-and-typescript-5b9065eedbd3" target="blank">
+    Link de ayuda
+  </a>
+</p>
+<p>
+  Sistema de testeo que reemplaza a protactor/selenium y nos da la posibilidad de probar contra nuestro servidor en local tests de integración.  Existe la posibilidad de correr los tests browserless de manera rápida (semejante a correrlo en un entorno como circleci).  Y también con la opción “npm run e2e.live”; con interfaz gráfica de debug en tiempo real y separada por archivo.  Además podemos ver cada “snapshot” de paso enunciado en el test para comprender mejor por qué un test no esté cumpliendo los requisitos.
+</p>
+
+
+
+<h3>AoT Compilation: Ahead of Time Compilation</h3>
+<p>
+  <a href="https://angular.io/guide/aot-compiler" target="blank">
+    Link de ayuda
+  </a>
+</p>
+<p><u>The Angular Ahead-of-Time (AOT) compiler converts your Angular HTML and TypeScript code into efficient JavaScript code during the build phase BEFORE the browser downloads and runs that code.</u></p>
+<ul>
+  <li><strong>Faster rendering:</strong>With AOT, the browser downloads a pre-compiled version of the application. The browser loads executable code so it can render the application immediately, without waiting to compile the app first.</li>
+  <li><strong>Fewer asynchronous requests:</strong>The compiler inlines external HTML templates and CSS style sheets within the application JavaScript, eliminating separate ajax requests for those source files.</li>
+  <li><strong>Smaller Angular framework download size:</strong>There's no need to download the Angular compiler if the app is already compiled. The compiler is roughly half of Angular itself, so omitting it dramatically reduces the application payload.</li>
+  <li><strong>Detect template errors earlier:</strong>The AOT compiler detects and reports template binding errors during the build step before users can see them.</li>
+  <li><strong>Better security:</strong>AOT compiles HTML templates and components into JavaScript files long before they are served to the client. With no templates to read and no risky client-side HTML or JavaScript evaluation, there are fewer opportunities for injection attacks.</li>
+</ul>
+
+
+
+<h3>Tree-shaking with Rollup</h3>
+<p>This application provides full support for tree-shaking your production builds with Rollup, which can drastically reduce the size of your application. This is the highest level of optimization currently available.</p>
+<ul>
+  <li>Beware of non-static/side-effectful imports. These cannot be properly optimized. For this reason, even though tree-shaking is taking place the developer still needs to be careful not to include non-static imports that are unnecessary, as those referenced imports will always end up in final bundle. Special attention should be given to RxJs, which makes heavy use of non-static/side-effectful imports: make sure you only add the operators you use, as any added operators will be included in your final production bundle.</li>
+  <li>UMD modules result in code that cannot be properly optimized. For best results, prefer ES6 modules whenever possible. This includes third-party dependencies: if one is published in both UMD and ES6 modules, go with the ES6 modules version.</li>
+  <li>During a production build, CommonJs modules will be automatically converted to ES6 modules. This means you can use them and/or require dependencies that use them without any issues.</li>
+</ul>
+
+
+
+<h3>RxJs:  Reactive Extensions JS / Reactive Programming with RxJS</h3>
+<p>
+  <a href="https://medium.com/google-developer-experts/angular-introduction-to-reactive-extensions-rxjs-a86a7430a61f" target="blank">
+    Link de ayuda 1
+  </a>
+</p>
+<p>
+  <a href="https://codecraft.tv/courses/angular/reactive-programming-with-rxjs/overview/" target="blank">
+    Link de ayuda 2
+  </a>
+</p>
+<h4>
+  Conceptos que ya hemos desarrollado e implementado usando promesas con angularjs:
+</h4>
+<ul>
+  <li><strong>Asynchronous, promesas básicamente:</strong><i>Requests hechos mediante módulo Http. El resultado de la operación depende de la respuesta del servicio/API externo.</i></li>
+  <li><strong>Data:</strong><i>Datos devueltos en diferentes tipos de variables. Strings, numbers, objetos, etc.</i></li>
+  <li><strong>Streams:</strong><i>El antiguo paradigma es algo como: el valor de una variable determinada, i. e. A se define en un momento dado en el tiempo como 1.  Conserva ese valor hasta que es redefinido, etc.  Usando streams A no es sólo un valor definido, es una cadena de valores en el tiempo como por ejemplo el histórico de edición de un campo input rellenado por el usuario para buscar un establecimiento concreto. O las coordenadas del movimiento del cursor hechas por el usuario.  Todo en realidad podría también ser interpretado como un flujo de datos (stream).</i></li>
+</ul>
+
+<ol>
+  <li>El nuevo tipo primitivo Observable está definido en la librería RxJS, es el objeto al cual nos Suscribimos/Observamos para reaccionar ante los cambios.  
+    <a href="https://www.angularonrails.com/observables-made-simple/" target="blank">(ver)</a>
+  </li>
+  <li>RxJS es la implementación de ReactiveX (Observables) en JavaScript.  También existen diferentes implementaciones de este tipo de objecto en otros lenguajes como Ruby, Python, etc.</li>
+  <li>Animación para entender observables en detalle <a href="https://codecraft.tv/courses/angular/reactive-programming-with-rxjs/observables-and-rxjs/" target="blank">ver</a></li>
+  <li>Ver diferencia entres los $watchers y observers: Similares pero con tecnologías de base distintas.</li>
+</ol>
+
+<h4>
+  Puntos que veo de posible mejora de plataforma LG usando este tipo de programación por streams
+</h4>
+<ul>
+  <li><strong>Multi-selectores responsive:</strong>Más que hacer un request para poblar cada multiselector.  Podríamos tener multi-electores o selectores de recursos que exigen un request asíncrono muchas veces con la necesidad de paginado, tales como: segmentos de compañía, campañas, tiendas.</li>
+  <li><strong>Progress bars en operaciones: </strong>Dado que algunas operaciones pueden llegar a tardar minutos y bloquean el “flujo normal de negocio” o en otro sentido las acciones que deben tomarse.  Los siguientes ejemplos son aspectos que podrían darle al usuario mayor información y así ver este que puede decidir hacer, o bien cuando tiempo debe esperar para que su acción sea completada.</li>
+  <li><strong>Porcentaje real de envío de una campaña</strong></li>
+  <li><strong>Estados de envío de campaña desglosados:</strong>i.e. (A partir de que una campaña es enviada): en cola (si aplica), validando (clásico campaign ready), enviado (con porcentaje de envío en tiempo real), envío completado.</li>
+  <li><strong>Contadores de caracteres (generación de contenido para campañas):</strong>Nos podríamos ahorrar la lógica implementada para conteo de palabras/letras con un simple método map que hace parte de la librería de RxJS.</li>
+  <li><strong>Puede ser útil para generación de un segmento. </strong>Algunas condiciones de segmento son excluyentes entre sí, por esto una programación reactiva que se “caliente” cada vez que una condición nueva es generada nos puede servir para dar mensajes de advertencia / éxito o error rápidamente.  También nos puede ayudar a verificar más rápidamente si un segmento es válido (según sus condiciones).</li>
+  <li><strong>Exportación de segmento</strong></li>
+  <li><strong>Exportar ventas</strong></li>
+  <li><strong>Generar informes</strong></li>
+  <li><strong>Cálculo de costo de envío de campaña SMS (?)</strong></li>
+  <li><strong>En sí cualquier acción que requiera workers</strong></li>
+</ul>
+
+
+<h3><strong>Lazy Loading: </strong></h3>
+<p>Básicamente es la estructura de módulos en los cuales ya viene preparado el seed elegido. A nivel macro el appcomponent sólo debe cargar los modulos generales como menu / footer / header y además el más importante que es el routermodule: una especie de contenedor general donde se desplegará el contenido según la ruta.  Si cargamos todos los modulos directamente en el modulo principal, algo que mas o menos tenemos hecho ahora, hará que la aplicación sea más lenta.</p>
+<p>
+  <a href="https://medium.com/@kouipheng.lee/lazy-loading-with-angular-4-29c23792b7f4" target="blank">
+    Ver link
+  </a>
+</p>
+
